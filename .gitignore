@@ -102,3 +102,10 @@ dist
 
 # TernJS port file
 .tern-port
+
+# MacOS
+.DS_Store
+
+# Layout Restaurant file
+ref/*.psd
+ref/*.png
