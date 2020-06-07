@@ -105,7 +105,3 @@ dist
 
 # MacOS
 .DS_Store
-
-# Layout Restaurant file
-ref/*.psd
-ref/*.png
