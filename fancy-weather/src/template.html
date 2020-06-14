@@ -5,11 +5,99 @@
   <meta charset="UTF-8">
   <title>Fancy weather</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
+  rel="stylesheet">
+  <script src="https://kit.fontawesome.com/2d1d7f4dfa.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <p>Hello World</p>
-    <img src="images/image.png" />
+  <header class="dashboard">
+    <div class="dashboard-buttons">
+      <!--  -->
+      <button class="button dashboard-button-background">
+        <div class="spinner"><i class="fas fa-sync-alt"></i></div>
+      </button>
+      <div class="dashboard-buttons-language">
+        <button class="button dashboard-button-language-top top-open">
+          <span>en</span>
+          <span class="arrow-down arrow-down-open"></span>
+        </button>
+        <div class="dashboard-buttons-language-list list-open">
+          <button 
+            class="dashboard-button-language-list button"
+            id="en">en
+          </button>
+            <button 
+              class="dashboard-button-language-list button inactive"
+              id="ru">pl
+            </button>
+        </div>
+      </div>
+      <button class="button dashboard-buttons-f inactive">°F</button>
+      <button class="button dashboard-buttons-c">°C</button>
+      <!--  -->
+    </div>
+
+    <div class="dashboard-search">
+      <input 
+        class="dashboard-search-input"
+        type="search"
+        name="search-city"
+        required=""
+        placeholder="Search city or ZIP">
+      <button class="button dashboard-search-button">Search</button>
+    </div>
+
+    </div>
+
+  </header>
+  <main class="main-container">
+    <section class="weather">
+
+      <div class="weather-data">
+        <p class="weather-data-location">Rumia, Poland</p>
+        <p class="weather-data-date-time">Sun 14 June &nbsp; 14:44</p>
+        <p class="weather-data-temperature-today">19</p>
+        <img class="weather-data-weather-icon" src="images/clear-day.png" alt="clear-day">
+        <div class="weather-data-describe">
+          <p>Clear</p>
+          <p>Feels Like: 19°</p>
+          <p>Wind: 7 m/s</p>
+          <p>Humidity: 67%</p>
+        </div>
+        <div class="forecast">
+          <p class="forecast-day">Monday</p>
+          <p class="forecast-temperature">16°</p>
+          <img class="forecast-icon" alt="partly-cloudy-day" src="images/partly-cloudy-day.png">
+        </div>
+        <div class="forecast"><p class="forecast-day">Tuesday</p>
+          <p class="forecast-temperature">17°</p>
+          <img class="forecast-icon" alt="partly-cloudy-day" src="images/partly-cloudy-day.png">
+        </div>
+        <div class="forecast"><p class="forecast-day">Wednesday</p>
+          <p class="forecast-temperature">19°</p>
+          <img class="forecast-icon" alt="clear-day" src="images/clear-day.png">
+        </div>
+          </div>
+
+    </section>
+
+    <section class="geolocation">
+
+        <div class="geolocation-container">
+          <iframe 
+            class="geolocation-iframe" 
+            src="https://www.google.com/maps/embed/v1/view?center=54.5700148,18.3969008&amp;zoom=10&amp;key=AIzaSyBWWZnqHV3asW7DM3yCQ0dxSHjj_J9LkwE&amp;language=en">
+          </iframe>
+        </div>
+        <div class="geolocation-coordinates">
+          <p>Latitude: 54°34'</p>
+          <p>Longitude: 18°24'</p>
+        </div>
+      
+    </section>
+
+  </main>
 </body>
 
 </html>
