@@ -109,11 +109,21 @@ button {
 /* button language */
 
 .dashboard-buttons-language {
+    position: relative;
+    background-color:green;
     margin-left: 1rem
 }
 
 .dashboard-button-language-top {
+    position: relative;
+    padding-right: 20px;
     width: 7.1rem
+}
+
+.dashboard-button-language-top i {
+    position: absolute;
+    right: 1rem;
+    margin-left: 0rem;
 }
 
 .top-open {
@@ -122,9 +132,20 @@ button {
 
 .dashboard-buttons-language-list {
     position: absolute;
-    z-index: 1;
+    /* z-index: 1; */
     max-height: 0;
     overflow: hidden;
+}
+
+.dashboard-buttons-language > i {
+    position: absolute;
+    text-align: center;
+    right: 0.5rem;
+    z-index: 100;
+    margin-top: 1.4rem;
+    color: var(--text-colour);
+    font-size: 1.6rem;
+    cursor: pointer;
 }
 
 .list-open {
@@ -144,28 +165,26 @@ button {
 }
 
 .arrow-down {
-    width: 1.3rem;
-    height: 1.3rem;
-    margin-left: 1rem;
-    /* background: url(../images/arrow-down.svg) 50% no-repeat */
+    width: 2rem;
+    height: 1,5rem;
 }
 
 .arrow-down-open {
-    transform: scaleY(-1)
+    transform: rotate(180deg);
 }
 
 /* button degrees */
-
-.dashboard-buttons-f {
+.dashboard-buttons-c {
     margin-left: 1rem;
     border-radius: .5rem 0 0 .5rem;
     cursor: auto
 }
 
-.dashboard-buttons-c {
+.dashboard-buttons-f {
     border-radius: 0 .5rem .5rem 0;
     cursor: auto
 }
+
 
 /* search */
 
@@ -208,7 +227,7 @@ button {
     display: flex;
     height: 600px;;
     justify-content: space-between;
-    margin: 4rem 4rem
+    margin: 4rem 4rem;
 }
 
 /* WEATHER */
