@@ -17,15 +17,33 @@ export default class DashBoard {
     }
 
     renderDashboard() {
-        const dashboard = document.querySelector('.dashboard-buttons')
+        const dashboard = document.querySelector('.dashboard');
+        
+        const dashboardButtons = document.createElement('div');
+        dashboardButtons.classList.add('dashboard-buttons');
+
+        const dashboardSearch = document.createElement('div');
+        dashboardSearch.classList.add('dashboard-search');
+
         const buttonRefreshBackground = this.renderRefreshBackgroundButton();
         const buttonsLanguageList = this.renderButtonsLanguageList();
         const buttonDegreeCelsius = this.renderButtonDegreeCelcius();
         const buttonDegreeFarenheit = this.renderButtonDegreeFarenheit();
-        dashboard.appendChild(buttonRefreshBackground);
-        dashboard.appendChild(buttonsLanguageList);
-        dashboard.appendChild(buttonDegreeCelsius);
-        dashboard.appendChild(buttonDegreeFarenheit);
+
+        const inputSearch = this.renderSearchInput();
+        const buttonSearch = this.renderSearchButton();
+
+        dashboardButtons.appendChild(buttonRefreshBackground);
+        dashboardButtons.appendChild(buttonsLanguageList);
+        dashboardButtons.appendChild(buttonDegreeCelsius);
+        dashboardButtons.appendChild(buttonDegreeFarenheit);
+
+        dashboardSearch.appendChild(inputSearch);
+        dashboardSearch.appendChild(buttonSearch);
+
+        dashboard.appendChild(dashboardButtons);
+        dashboard.appendChild(dashboardSearch);
+
     }
 
     renderRefreshBackgroundButton() {
@@ -89,6 +107,25 @@ export default class DashBoard {
         return this.buttonDegreeFarenheit;
     } 
     
+    renderSearchInput() {
+        this.inputSearch = document.createElement('input');
+        this.inputSearch.className = 'dashboard-search-input';
+        this.inputSearch.setAttribute("type", "search");
+        this.inputSearch.setAttribute("name", "search-city");
+        this.inputSearch.setAttribute("required", "");
+        this.inputSearch.setAttribute("placeholder", "Search city or ZIP");
+
+        return this.inputSearch;  
+    }
+
+    renderSearchButton() {
+        this.buttonSearch = document.createElement('button');
+        this.buttonSearch.className = 'button dashboard-search-button';
+        this.buttonSearch.innerText = 'search';
+
+        return this.buttonSearch;  
+    }
+
     setActiveButtons() {
         this.isButtonDegreeCelciusActive
             ? this.buttonDegreeCelcius.classList.remove('inactive')
@@ -160,19 +197,39 @@ export default class DashBoard {
             this.setActiveButtons();
         });
         this.buttonLanguageEn.addEventListener('click', (e) => {
-            this.isLanguageEnActive = !this.isLanguageEnActive;
-            this.isLanguagePlActive = !this.isLanguagePlActive;
+            if (!this.isLanguageEnActive) {
+                this.isLanguageEnActive = !this.isLanguageEnActive;
+                this.isLanguagePlActive = !this.isLanguagePlActive;
+            }
             this.isLanguageListOpen = !this.isLanguageListOpen;
             this.setActiveButtons();
             this.setActiveListLanguage()
-        })
+        });
         this.buttonLanguagePl.addEventListener('click', (e) => {
-            this.isLanguageEnActive = !this.isLanguageEnActive;
-            this.isLanguagePlActive = !this.isLanguagePlActive;
+            if (!this.isLanguagePlActive) {
+                this.isLanguageEnActive = !this.isLanguageEnActive;
+                this.isLanguagePlActive = !this.isLanguagePlActive;
+            }
             this.isLanguageListOpen = !this.isLanguageListOpen;
             this.setActiveButtons();
             this.setActiveListLanguage();
-        })
+        });
+        this.buttonSearch.addEventListener('click', (e) => {
+            if(this.inputSearch.value !== "Search city or ZIP") {
+                let nextSearchLocationPlace = this.inputSearch.value;
+                console.log(nextSearchLocationPlace);
+            }
+            this.inputSearch.value = "Search city or ZIP";
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.keyCode == 13) {
+                if(this.inputSearch.value !== "Search city or ZIP") {
+                    let nextSearchLocationPlace = this.inputSearch.value;
+                    console.log(nextSearchLocationPlace);
+                }
+                this.inputSearch.value = "Search city or ZIP";
+            }
+        });
     }
 
 }
