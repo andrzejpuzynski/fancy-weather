@@ -6,7 +6,8 @@ export const getLinkToImage = () => {
       .then(res => res.json())
       .then(data => {
          let newImageSource = data.urls.regular;
-          backgroundImageS.style.backgroundImage = `url("${newImageSource}")`;
+          // backgroundImageS.style.backgroundImage = `url("${newImageSource}")`;
+          backgroundImageS.setAttribute("style", `background-image: linear-gradient(rgba(8, 15, 26, 0.59) 0%, rgba(17, 17, 46, 0.46) 100%), url("${newImageSource}")`);
         });
     }
 
