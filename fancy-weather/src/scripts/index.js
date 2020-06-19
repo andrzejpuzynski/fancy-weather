@@ -1,5 +1,3 @@
-import { hello } from './hello.js';
-
 import html from '../template.html';
 import img from  '../images/image.png';
 
@@ -24,15 +22,8 @@ class FancyWeather {
             this.longitude
             );
         getLinkToImage();
-        this.listener();
     }
 
-    listener() {    
-        document.addEventListener('click', (e) => {
-            this.latitude = '52.00';
-            this.maincontainer.geolocationMap.setCoordinates(this.latitude, this.longitude)
-        })
-    }
 
     showcoordinates() {
         if(navigator.geolocation) {
@@ -43,7 +34,5 @@ class FancyWeather {
         }
     };
 }
-
-hello();
 const fancyWeather = new FancyWeather();
 
