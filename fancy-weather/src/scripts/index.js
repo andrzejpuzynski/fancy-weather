@@ -4,40 +4,22 @@ import img from  '../images/image.png';
 import 'normalize.css'; // import from node_modules
 import '../styles/stylesheet.css';
 
-import DashBoard from './DashBoard';
-import MainContainer from './MainContainer'; 
+import FancyWeatherApp from './FancyWeatherApp'; 
 import { getLinkToImage } from './getLinkToImage.js';
 
-class FancyWeather {
-    constructor() {
-        this.latitude = '';
-        this.longitude = '';
-        this.dashboardLanguageMenuOpen = false;
-        this.dashboardDegreeCelcius = true;
-        this.dashboardDegreeFarenheit = false;
-        this.dashBoard = new DashBoard();
-        this.maincontainer = new MainContainer(
-            this.latitude,
-            this.longitude
-            );
-        this.refreshCoordinates();
-        getLinkToImage();
+function startingBrowserCoordinates() {
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            fancyWeather.updateAppCoordinates(latitude, longitude);
+            });
     }
+};
 
-    // setListener() {
-    //     document.addEventListener('click', console.log("KLIK"))
-    // }
+// Running App
+const fancyWeather = new FancyWeatherApp();
+getLinkToImage();
+startingBrowserCoordinates();
 
-    refreshCoordinates() {
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                this.latitude = position.coords.latitude;
-                this.longitude = position.coords.longitude;
-                this.maincontainer.geolocationMap.setCoordinates(this.latitude, this.longitude)
-                });
-        }
-        console.log("end")
-    };
-}
-const fancyWeather = new FancyWeather();
 
