@@ -10,9 +10,8 @@ import { getLinkToImage } from './getLinkToImage.js';
 
 class FancyWeather {
     constructor() {
-        this.latitude = `54.57`;
-        this.longitude = `18.39`;
-        this.showcoordinates();
+        this.latitude = '';
+        this.longitude = '';
         this.dashboardLanguageMenuOpen = false;
         this.dashboardDegreeCelcius = true;
         this.dashboardDegreeFarenheit = false;
@@ -21,17 +20,23 @@ class FancyWeather {
             this.latitude,
             this.longitude
             );
+        this.refreshCoordinates();
         getLinkToImage();
     }
 
+    // setListener() {
+    //     document.addEventListener('click', console.log("KLIK"))
+    // }
 
-    showcoordinates() {
+    refreshCoordinates() {
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
-                let lng = position.coords.longitude;
-                let lat = position.coords.latitude;        
+                this.latitude = position.coords.latitude;
+                this.longitude = position.coords.longitude;
+                this.maincontainer.geolocationMap.setCoordinates(this.latitude, this.longitude)
                 });
         }
+        console.log("end")
     };
 }
 const fancyWeather = new FancyWeather();
