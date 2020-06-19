@@ -179,14 +179,18 @@ export default class DashBoard {
             getLinkToImage();
         })
         this.buttonDegreeCelcius.addEventListener('click', (e) => {
-            this.isButtonDegreeCelciusActive = !this.isButtonDegreeCelciusActive;
-            this.isButtonDegreeFarenheitActive = !this.isButtonDegreeFarenheitActive;
-            this.setActiveButtons();
+            if (!this.isButtonDegreeCelciusActive) {
+                this.isButtonDegreeCelciusActive = !this.isButtonDegreeCelciusActive;
+                this.isButtonDegreeFarenheitActive = !this.isButtonDegreeFarenheitActive;
+                this.setActiveButtons();
+            }
         });
         this.buttonDegreeFarenheit.addEventListener('click', (e) => {
-            this.isButtonDegreeCelciusActive = !this.isButtonDegreeCelciusActive;
-            this.isButtonDegreeFarenheitActive = !this.isButtonDegreeFarenheitActive;
-            this.setActiveButtons();
+            if (!this.isButtonDegreeFarenheitActive) {
+                this.isButtonDegreeCelciusActive = !this.isButtonDegreeCelciusActive;
+                this.isButtonDegreeFarenheitActive = !this.isButtonDegreeFarenheitActive;
+                this.setActiveButtons();
+            }
         });
         this.buttonLanguageListTop.addEventListener('click', (e) => {
             this.isLanguageListOpen = !this.isLanguageListOpen;
