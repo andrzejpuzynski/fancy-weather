@@ -41,7 +41,8 @@ export default class Weather {
             let daynumeric = date.toLocaleString('en', {day: 'numeric'});
             let month = date.toLocaleString('en', {month: 'long'});
             let hour = date.getHours();
-            let minutes = date.getMinutes();
+            let minutes = '00'.concat(date.getMinutes()).slice(-2);
+            console.log(typeof minutes);
             this.locationtime.innerHTML = `${dayname} ${daynumeric} ${month} ${hour}:${minutes}`;  
     }
 
