@@ -6,11 +6,17 @@ export default class Weather {
     ) {
         this.country = '';
         this.town = '';
+        this.todaytemperature;
+        this.todayfeellike;
+        this.next1temp;
+        this.next2temp;
+        this.next3temp;
         this.next1day = '';
         this.next2day = '';
         this.next3day = '';
         this.renderWeather();
         this.updateLocation();
+        this.runEventListener()
     }
 
     renderWeather() {
@@ -18,6 +24,8 @@ export default class Weather {
 
         this.container = document.createElement('div');
         this.container.classList.add('weather-data');
+
+        this.container.addEventListener('click', (e) => this.changeDegrees());
         
         this.location = document.createElement('p');
         this.location.classList.add('weather-data-location');
@@ -128,29 +136,55 @@ export default class Weather {
     
     updateWeatherData(data) {
         this.updateDate();
-        // console.log(data);
         let weatherdata = data;
         // current day
-        this.locationtemperature.innerHTML = `${Math.floor(weatherdata.current.temp)}`;
+        this.todaytemperature = `${Math.floor(weatherdata.current.temp)}`
+        this.locationtemperature.innerHTML = this.todaytemperature;
         this.locationtemperatureicon.setAttribute('src', `http://openweathermap.org/img/wn/${weatherdata.current.weather[0].icon}@2x.png`);
         
         this.locationtemperaturedescribemain.innerHTML = `${weatherdata.current.weather[0].description}`;
-        this.locationtemperaturedescribefeeltemp.innerHTML = `Feels Like: ${weatherdata.current.feels_like.toFixed(1)}°`;
+        this.todayfeellike = weatherdata.current.feels_like;
+        this.locationtemperaturedescribefeeltemp.innerHTML = `Feels Like: ${this.todayfeellike.toFixed(1)}°`;
         this.locationtemperaturedescribewind.innerHTML = `Wind: ${weatherdata.current.wind_speed} m/s`;
         this.locationtemperaturedescribehumidity.innerHTML = `Humidity: ${weatherdata.current.humidity} %`;
         
         // forecast 1 day
         this.forecastday1day.innerHTML = `${this.next1day}`;
-        this.forecastday1temperature.innerHTML = `${weatherdata.daily[1].temp.day.toFixed(0)}°`;
+        this.next1temp = weatherdata.daily[1].temp.day;
+        this.forecastday1temperature.innerHTML = `${this.next1temp.toFixed(0)}°`;
         this.forecastday1icon.setAttribute('src', `http://openweathermap.org/img/wn/${weatherdata.current.weather[0].icon}@2x.png`)
         // forecast 2 day
         this.forecastday2day.innerHTML = `${this.next2day}`;
-        this.forecastday2temperature.innerHTML = `${weatherdata.daily[2].temp.day.toFixed(0)}°`;
+        this.next2temp = weatherdata.daily[2].temp.day;
+        this.forecastday2temperature.innerHTML = `${this.next2temp.toFixed(0)}°`;
         this.forecastday2icon.setAttribute('src', `http://openweathermap.org/img/wn/${weatherdata.current.weather[0].icon}@2x.png`)
         // forecast 3 day
         this.forecastday3day.innerHTML = `${this.next3day}`;
-        this.forecastday3temperature.innerHTML = `${weatherdata.daily[3].temp.day.toFixed(0)}°`;
-        this.forecastday3icon.setAttribute('src', `http://openweathermap.org/img/wn/${weatherdata.current.weather[0].icon}@2x.png`)
-        
-    }    
+        this.next3temp = weatherdata.daily[3].temp.day;
+        this.forecastday3temperature.innerHTML = `${this.next3temp.toFixed(0)}°`;
+        this.forecastday3icon.setAttribute('src', `http://openweathermap.org/img/wn/${weatherdata.current.weather[0].icon}@2x.png`) 
+    }
+
+    runEventListener() {
+        let celciusHook = document.querySelector('.dashboard-buttons-c');
+        let fahrenheitHook = document.querySelector('.dashboard-buttons-f');
+        celciusHook.addEventListener('click', (e) => this.changeDegreesFahrenheitToCelcius())
+        fahrenheitHook.addEventListener('click', (e) => this.changeDegreesCelciusToFahrenheit())
+    }
+
+    changeDegreesFahrenheitToCelcius() {
+            this.locationtemperature.innerHTML = `${Number(this.todaytemperature).toFixed(0)}`;
+            this.locationtemperaturedescribefeeltemp.innerHTML = `Feels Like: ${Number(this.todayfeellike).toFixed(1)}°`;
+            this.forecastday1temperature.innerHTML = `${Number(this.next1temp).toFixed(0)}°`;
+            this.forecastday2temperature.innerHTML = `${Number(this.next2temp).toFixed(0)}°`;
+            this.forecastday3temperature.innerHTML = `${Number(this.next3temp).toFixed(0)}°`;      
+    } 
+         
+    changeDegreesCelciusToFahrenheit() {
+            this.locationtemperature.innerHTML = `${((Number(this.todaytemperature) * 9/5) + 32).toFixed(0)}`;
+            this.locationtemperaturedescribefeeltemp.innerHTML = `Feels Like: ${((Number(this.todayfeellike) * 9/5) + 32).toFixed(1)}°`;
+            this.forecastday1temperature.innerHTML = `${((Number(this.next1temp) * 9/5) + 32).toFixed(0)}°`;
+            this.forecastday2temperature.innerHTML = `${((Number(this.next2temp) * 9/5) + 32).toFixed(0)}°`;
+            this.forecastday3temperature.innerHTML = `${((Number(this.next3temp) * 9/5) + 32).toFixed(0)}°`;       
+    }
 }

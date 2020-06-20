@@ -39,6 +39,7 @@ export default class FancyWeatherApp {
             fetch(OpenCageDataRequest)
             .then((response) => response.json())
             .then((data) =>  {
+                console.log(data)
                 const country = data.results[0].components.country;
                 const town = data.results[0].components.county;
                 this.maincontainer.weather.updateLocation(town, country);

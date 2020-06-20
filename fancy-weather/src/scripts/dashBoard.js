@@ -2,7 +2,6 @@ import { getLinkToImage } from './getLinkToImage.js';
 
 export default class DashBoard {
     constructor() {
-        // this.dashboardLanguageMenuOpen = false;
         this.isButtonDegreeCelciusActive = true;
         this.isButtonDegreeFarenheitActive = false;
         this.isButtonLanguageEnActive = true;
@@ -183,6 +182,7 @@ export default class DashBoard {
                 this.isButtonDegreeCelciusActive = !this.isButtonDegreeCelciusActive;
                 this.isButtonDegreeFarenheitActive = !this.isButtonDegreeFarenheitActive;
                 this.setActiveButtons();
+                // this.changeDegrees(this.isButtonDegreeCelciusActive);
             }
         });
         this.buttonDegreeFarenheit.addEventListener('click', (e) => {
@@ -190,6 +190,7 @@ export default class DashBoard {
                 this.isButtonDegreeCelciusActive = !this.isButtonDegreeCelciusActive;
                 this.isButtonDegreeFarenheitActive = !this.isButtonDegreeFarenheitActive;
                 this.setActiveButtons();
+                // this.changeDegrees(this.isButtonDegreeCelciusActive);
             }
         });
         this.buttonLanguageListTop.addEventListener('click', (e) => {
