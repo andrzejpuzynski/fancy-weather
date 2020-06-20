@@ -1,7 +1,5 @@
 import GeolocationMap from './GeolocationMap';
 import Weather from './Weather';
-import '../images/partly-cloudy-day.png';
-import '../images/clear-day.png';
 
 export default class MainContainer {
     constructor (

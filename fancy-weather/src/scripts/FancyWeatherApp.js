@@ -47,18 +47,15 @@ export default class FancyWeatherApp {
         }
 
         updateWeatherData(latitude, longitude) {
-
-
-            // const OpenWeatherMapUrl = 'https://api.openweathermap.org/data/2.5/weather'
             const OpenWeatherMapUrl = 'https://api.openweathermap.org/data/2.5/onecall'
             const OpenWeatherMapKey = '268d0a9ffef72647f076ffed08035fde'; 
-            const OpenWeatherMapExclude = '&exclude=current,minutely,hourly,historical';
-            const OpenWeatherMapRequest = `${OpenWeatherMapUrl}?lat=${latitude}&lon=${longitude}${OpenWeatherMapExclude}&appid=${OpenWeatherMapKey}`;
+            const OpenWeatherMapExclude = '&exclude=minutely,hourly,historical';
+            const OpenWeatherMapRequest = `${OpenWeatherMapUrl}?lat=${latitude}&lon=${longitude}${OpenWeatherMapExclude}&appid=${OpenWeatherMapKey}&units=metric`;
             
             fetch(OpenWeatherMapRequest)
             .then((response) => response.json())
             .then((data) =>  {
-                console.log(data)
+                this.maincontainer.weather.updateWeatherData(data);
             });
         };
 }
