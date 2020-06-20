@@ -243,6 +243,7 @@ button {
 }
 
 .weather-data-location {
+    min-height: 50px;
     grid-column: 1/4;
     font-size: 4.4rem
 }

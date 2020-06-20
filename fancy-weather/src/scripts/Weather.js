@@ -18,12 +18,11 @@ export default class Weather {
         
         this.location = document.createElement('p');
         this.location.classList.add('weather-data-location');
-        this.location.innerHTML = `${this.town}, ${this.country}`;
+        // this.location.innerHTML = ;
 
         this.locationtime = document.createElement('p');
         this.locationtime.classList.add('weather-data-date-time');
-        this.locationtime.innerHTML = '';
-        
+
         section.appendChild(this.container);
         this.container.appendChild(this.location)
         this.container.appendChild(this.locationtime)
@@ -32,7 +31,7 @@ export default class Weather {
     updateLocation(town, country) {
         this.town = town;
         this.country = country;
-        this.location.innerText = `${this.town}, ${this.country}`;
+        this.location.innerHTML = `${this.town}, ${this.country}`;
     }
 
     updateDate() {
