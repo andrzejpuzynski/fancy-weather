@@ -8,7 +8,7 @@ module.exports = {
     entry: "./fancy-weather/src/scripts/index.js",
     output: {
         filename: "main.[contentHash].js",
-        path: path.resolve(__dirname, "./dist")
+        path: path.resolve(__dirname, "./deploy")
       },
     module: {
         rules: [

@@ -40,7 +40,7 @@ export default class FancyWeatherApp {
             .then((response) => response.json())
             .then((data) =>  {
                 const country = data.results[0].components.country;
-                const town = data.results[0].components.town;
+                const town = data.results[0].components.county;
                 this.maincontainer.weather.updateLocation(town, country);
                 this.maincontainer.weather.updateDate();
            });

@@ -128,7 +128,7 @@ export default class Weather {
     
     updateWeatherData(data) {
         this.updateDate();
-        console.log(data);
+        // console.log(data);
         let weatherdata = data;
         // current day
         this.locationtemperature.innerHTML = `${Math.floor(weatherdata.current.temp)}`;
