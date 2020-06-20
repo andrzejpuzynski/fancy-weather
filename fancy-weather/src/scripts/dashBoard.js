@@ -219,22 +219,6 @@ export default class DashBoard {
             this.setActiveButtons();
             this.setActiveListLanguage();
         });
-        this.buttonSearch.addEventListener('click', (e) => {
-            if(this.inputSearch.value !== "Search city or ZIP") {
-                let nextSearchLocationPlace = this.inputSearch.value;
-                console.log(nextSearchLocationPlace);
-            }
-            this.inputSearch.value = "Search city or ZIP";
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.keyCode == 13) {
-                if(this.inputSearch.value !== "Search city or ZIP") {
-                    let nextSearchLocationPlace = this.inputSearch.value;
-                    console.log(nextSearchLocationPlace);
-                }
-                this.inputSearch.value = "Search city or ZIP";
-            }
-        });
     }
 
 }

@@ -6,6 +6,7 @@ export default class Weather {
     ) {
         this.country = '';
         this.town = '';
+        this.timezoneoffset;
         this.todaytemperature;
         this.todayfeellike;
         this.next1temp;
@@ -110,32 +111,32 @@ export default class Weather {
         this.location.innerHTML = (town && country) ? `${this.town}, ${this.country}` : ``;
     }
     
-    updateDate() {
+    updateDate(timezone) {
         let date = new Date();
-        let dayname = date.toLocaleString('en', {weekday: 'short'});
-        let daynumeric = date.toLocaleString('en', {day: 'numeric'});
-        let month = date.toLocaleString('en', {month: 'long'});
-        let hour = date.getHours();
-        let minutes = '00'.concat(date.getMinutes()).slice(-2);
+        let dayname = date.toLocaleString('en', {weekday: 'short', timeZone: `${timezone}`});
+        let daynumeric = date.toLocaleString('en', {day: 'numeric', timeZone: `${timezone}`});
+        let month = date.toLocaleString('en', {month: 'long', timeZone: `${timezone}`});
+        let hour = date.toLocaleString('en', {timeZone: `${timezone}`, hour: 'numeric', hourCycle: 'h23'});
+        let minutes = date.toLocaleString('en', {timeZone: `${timezone}`, minute: 'numeric'});
         this.locationtime.innerHTML = `${dayname} ${daynumeric} ${month} ${hour}:${minutes}`;
         
         // set names of next 3 days
         let next1day = new Date();
         next1day.setTime(next1day.getTime() + 1 * (24 * 60 * 60 * 1000));
-        next1day = next1day.toLocaleString('en', {weekday: 'long'});
+        next1day = next1day.toLocaleString('en', {weekday: 'long', timeZone: `${timezone}`});
         this.next1day = next1day;
         let next2day = new Date();
         next2day.setTime(next2day.getTime() + 2 * (24 * 60 * 60 * 1000));
-        next2day = next2day.toLocaleString('en', {weekday: 'long'});
+        next2day = next2day.toLocaleString('en', {weekday: 'long', timeZone: `${timezone}`});
         this.next2day = next2day;
         let next3day = new Date();
         next3day.setTime(next3day.getTime() + 3 * (24 * 60 * 60 * 1000));
-        next3day = next3day.toLocaleString('en', {weekday: 'long'});
+        next3day = next3day.toLocaleString('en', {weekday: 'long', timeZone: `${timezone}`});
         this.next3day = next3day;
     }
     
     updateWeatherData(data) {
-        this.updateDate();
+        this.updateDate(data.timezone);
         let weatherdata = data;
         // current day
         this.todaytemperature = `${Math.floor(weatherdata.current.temp)}`
