@@ -27,24 +27,21 @@ export default class FancyWeatherApp {
             this.longitude = lng;
             this.coordinates();
             this.maincontainer.geolocationMap.updateCoordinates(this.latitude, this.longitude);
-            // this.updateLocationPlaceFromCoordinates(this.latitude, this.longitude);
-        // return this
-    }
-
-    updateLocationPlaceFromCoordinates(latitude, longitude) {
-        const OpenCageDataUrl = 'https://api.opencagedata.com/geocode/v1/json'
-        const OpenCageDataKey = '5f24eda1596f49f4b8af4285d6cb0b50'; 
-        const OpenCageDataRequest = `${OpenCageDataUrl}'?key=${OpenCageDataKey}&q=${latitude}+${longitude}&pretty=1&no_annotations=1`;
-
-        // var OpenCageDataRequest = OpenCageDataUrl + '?' + 'key=' + OpenCageDataKey + '&q=' + encodeURIComponent(latitude + ',' + longitude) + '&pretty=1' + '&no_annotations=1';
-
-          console.log(OpenCageDataRequest);
-          console.log("dub")
-
-        fetch(OpenCageDataRequest)
-        .then((response) => response.json())
-        .then((data) =>  {
-            console.log(data);
+            this.updateLocationPlaceFromCoordinates(this.latitude, this.longitude);
+        }
+        
+        updateLocationPlaceFromCoordinates(latitude, longitude) {
+            const OpenCageDataUrl = 'https://api.opencagedata.com/geocode/v1/json'
+            const OpenCageDataKey = '5f24eda1596f49f4b8af4285d6cb0b50'; 
+            const OpenCageDataRequest = `${OpenCageDataUrl}?key=${OpenCageDataKey}&q=${latitude}+${longitude}&pretty=1&no_annotations=1`;
+            
+            fetch(OpenCageDataRequest)
+            .then((response) => response.json())
+            .then((data) =>  {
+                const country = data.results[0].components.country;
+                const town = data.results[0].components.town;
+                this.maincontainer.weather.updateLocation(town, country);
+                this.maincontainer.weather.updateDate();
         });
     }
 }

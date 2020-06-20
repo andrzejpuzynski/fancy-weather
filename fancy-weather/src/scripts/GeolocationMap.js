@@ -30,8 +30,8 @@ export default class GeolocationMap {
     updateCoordinates(latitude, longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
-        this.coordLatitude.innerText = !this.latitude ? `Latitude: _______` : `Latitude: ${Number(this.latitude).toFixed(4)}`;
-        this.coordLongitude.innerText = !this.longitude ? `Longitude: _______` : `Longitude: ${Number(this.longitude).toFixed(4)}`;
+        this.coordLatitude.innerText = !this.latitude ? `Latitude:  ${Number(0).toFixed(4)}` : `Latitude: ${Number(this.latitude).toFixed(4)}`;
+        this.coordLongitude.innerText = !this.longitude ? `Longitude:  ${Number(0).toFixed(4)}` : `Longitude: ${Number(this.longitude).toFixed(4)}`;
         this.container.innerHTML = this.positionMap();
     }
     
