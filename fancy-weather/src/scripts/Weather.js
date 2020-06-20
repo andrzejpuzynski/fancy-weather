@@ -18,20 +18,46 @@ export default class Weather {
         
         this.location = document.createElement('p');
         this.location.classList.add('weather-data-location');
-        // this.location.innerHTML = ;
 
         this.locationtime = document.createElement('p');
         this.locationtime.classList.add('weather-data-date-time');
+        
+        this.locationtemperature = document.createElement('p');
+        this.locationtemperature.classList.add('weather-data-temperature-today');
+        this.locationtemperature.innerHTML = '19';
+        this.locationtemperatureicon = document.createElement('img');
+        this.locationtemperatureicon.classList.add('weather-data-weather-icon');
+        this.locationtemperatureicon.setAttribute('src', 'images/clear-day.png');
+
+        this.locationtemperaturedescribe = document.createElement('div');
+        this.locationtemperaturedescribe.classList.add('weather-data-describe');
+        
+        this.locationtemperaturedescribemain = document.createElement('p');
+        this.locationtemperaturedescribemain.innerHTML = 'Clear';
+        this.locationtemperaturedescribe.appendChild(this.locationtemperaturedescribemain);
+        this.locationtemperaturedescribefeeltemp = document.createElement('p');
+        this.locationtemperaturedescribefeeltemp.innerHTML = 'Feels Like: 19°';
+        this.locationtemperaturedescribe.appendChild(this.locationtemperaturedescribefeeltemp);
+        this.locationtemperaturedescribewind = document.createElement('p');
+        this.locationtemperaturedescribewind.innerHTML = 'Wind: 7 m/s';
+        this.locationtemperaturedescribe.appendChild(this.locationtemperaturedescribewind);
+        this.locationtemperaturedescribehumidity = document.createElement('p');
+        this.locationtemperaturedescribehumidity.innerHTML = 'Humidity: 67%';
+        this.locationtemperaturedescribe.appendChild(this.locationtemperaturedescribehumidity);
+
 
         section.appendChild(this.container);
         this.container.appendChild(this.location)
         this.container.appendChild(this.locationtime)
+        this.container.appendChild(this.locationtemperature)
+        this.container.appendChild(this.locationtemperatureicon)
+        this.container.appendChild(this.locationtemperaturedescribe)
     }
 
     updateLocation(town, country) {
         this.town = town;
         this.country = country;
-        this.location.innerHTML = `${this.town}, ${this.country}`;
+        this.location.innerHTML = (town && country) ? `${this.town}, ${this.country}` : ``;
     }
 
     updateDate() {
@@ -41,7 +67,6 @@ export default class Weather {
             let month = date.toLocaleString('en', {month: 'long'});
             let hour = date.getHours();
             let minutes = '00'.concat(date.getMinutes()).slice(-2);
-            console.log(typeof minutes);
             this.locationtime.innerHTML = `${dayname} ${daynumeric} ${month} ${hour}:${minutes}`;  
     }
 
