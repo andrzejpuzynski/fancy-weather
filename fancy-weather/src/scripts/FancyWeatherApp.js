@@ -1,3 +1,5 @@
+import { getLinkToImage } from './getLinkToImage.js';
+
 import DashBoard from './DashBoard';
 import MainContainer from './MainContainer'; 
 
@@ -72,9 +74,9 @@ export default class FancyWeatherApp {
                 const lat = data.results[0].geometry.lat;
                 const lng = data.results[0].geometry.lng;
                 this.updateAppCoordinates(lat, lng);
-           });
+            });
         }
-
+        
         updateWeatherData(latitude, longitude) {
             const OpenWeatherMapUrl = 'https://api.openweathermap.org/data/2.5/onecall'
             const OpenWeatherMapKey = '268d0a9ffef72647f076ffed08035fde'; 
@@ -84,7 +86,10 @@ export default class FancyWeatherApp {
             fetch(OpenWeatherMapRequest)
             .then((response) => response.json())
             .then((data) =>  {
+                let keywordtimezone = data.timezone;
+                let keywordweather = data.current.weather[0].main;
                 this.maincontainer.weather.updateWeatherData(data);
+                getLinkToImage(`${keywordtimezone},${keywordweather}`);
             });
         };
 
