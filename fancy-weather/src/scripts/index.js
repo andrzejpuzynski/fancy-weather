@@ -20,5 +20,3 @@ function startingBrowserCoordinates() {
 const fancyWeather = new FancyWeatherApp();
 getLinkToImage();
 startingBrowserCoordinates();
-
-
