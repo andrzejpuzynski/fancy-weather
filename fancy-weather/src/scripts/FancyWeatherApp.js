@@ -11,12 +11,23 @@ export default class FancyWeatherApp {
         this.dashboardLanguageMenuOpen = false;
         this.dashboardDegreeCelcius = true;
         this.dashboardDegreeFarenheit = false;
+        this.renderHTML();
         this.dashBoard = new DashBoard();
         this.maincontainer = new MainContainer(
             this.latitude,
             this.longitude
             );
         this.runSearchListener();
+        }
+
+        renderHTML() {
+            this.app = document.querySelector('body');
+            this.dashboardContainer = document.createElement('header');
+            this.dashboardContainer.classList.add('dashboard');
+            this.mainContainer = document.createElement('main');
+            this.mainContainer.classList.add('main-container');
+            this.app.appendChild(this.dashboardContainer);
+            this.app.appendChild(this.mainContainer);
         }
         
         updateAppCoordinates(lat, lng) {
