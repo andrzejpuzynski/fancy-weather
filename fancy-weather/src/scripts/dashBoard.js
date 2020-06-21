@@ -174,9 +174,6 @@ export default class DashBoard {
             1000)
         });
 
-        this.buttonRefreshBackground.addEventListener('click', (e) => {
-            getLinkToImage();
-        })
         this.buttonDegreeCelcius.addEventListener('click', (e) => {
             if (!this.isButtonDegreeCelciusActive) {
                 this.isButtonDegreeCelciusActive = !this.isButtonDegreeCelciusActive;

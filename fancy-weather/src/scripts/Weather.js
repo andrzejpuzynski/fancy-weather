@@ -152,17 +152,17 @@ export default class Weather {
         this.forecastday1day.innerHTML = `${this.next1day}`;
         this.next1temp = weatherdata.daily[1].temp.day;
         this.forecastday1temperature.innerHTML = `${this.next1temp.toFixed(0)}°`;
-        this.forecastday1icon.setAttribute('src', `http://openweathermap.org/img/wn/${weatherdata.current.weather[0].icon}@2x.png`)
+        this.forecastday1icon.setAttribute('src', `http://openweathermap.org/img/wn/${weatherdata.daily[1].weather[0].icon}@2x.png`)
         // forecast 2 day
         this.forecastday2day.innerHTML = `${this.next2day}`;
         this.next2temp = weatherdata.daily[2].temp.day;
         this.forecastday2temperature.innerHTML = `${this.next2temp.toFixed(0)}°`;
-        this.forecastday2icon.setAttribute('src', `http://openweathermap.org/img/wn/${weatherdata.current.weather[0].icon}@2x.png`)
+        this.forecastday2icon.setAttribute('src', `http://openweathermap.org/img/wn/${weatherdata.daily[2].weather[0].icon}@2x.png`)
         // forecast 3 day
         this.forecastday3day.innerHTML = `${this.next3day}`;
         this.next3temp = weatherdata.daily[3].temp.day;
         this.forecastday3temperature.innerHTML = `${this.next3temp.toFixed(0)}°`;
-        this.forecastday3icon.setAttribute('src', `http://openweathermap.org/img/wn/${weatherdata.current.weather[0].icon}@2x.png`) 
+        this.forecastday3icon.setAttribute('src', `http://openweathermap.org/img/wn/${weatherdata.daily[3].weather[0].icon}@2x.png`) 
     }
 
     runEventListener() {

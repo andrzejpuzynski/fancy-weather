@@ -86,10 +86,11 @@ export default class FancyWeatherApp {
             fetch(OpenWeatherMapRequest)
             .then((response) => response.json())
             .then((data) =>  {
+                console.log(data)
                 let keywordtimezone = data.timezone;
                 let keywordweather = data.current.weather[0].main;
                 this.maincontainer.weather.updateWeatherData(data);
-                getLinkToImage(`${keywordtimezone},${keywordweather}`);
+                getLinkToImage(`sky,${keywordweather}`);
             });
         };
 
